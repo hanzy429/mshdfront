@@ -21,7 +21,7 @@
 					    <label for="username" class="layui-form-label">
 					        <span class="x-red">*</span>用户名</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="username" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="text" id="username" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" maxlength="6"></div>
 					</div>
 					<div class="layui-form-item">
 					    <div class="layui-input-block">

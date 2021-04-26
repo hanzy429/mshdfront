@@ -119,21 +119,27 @@
 										})
 									});
 								} else if (obj.event === 'edit') {
-									$.ajax({
-										url: URL + '/v1/adminuserpassword/',
-										method: 'put',
-										data: data,
-										success: function(res) {
-											if (res.code === 0) {
-												layer.alert("编辑成功");
-												tableRender();
-											} else
-												alert(res.msg);
-										},
-										error: function(data) {
-											alert("服务器繁忙");
-										}
-									});
+									if(data.password.length===6){
+										$.ajax({
+											url: URL + '/v1/adminuserpassword/',
+											method: 'put',
+											data: data,
+											success: function(res) {
+												if (res.code === 0) {
+													layer.alert("编辑成功");
+													tableRender();
+												} else
+													alert(res.msg);
+											},
+											error: function(data) {
+												alert("服务器繁忙");
+											}
+										});
+									}
+
+									else{
+										alert("请输入6位密码");
+									}
 								}
 							});
 						} else {

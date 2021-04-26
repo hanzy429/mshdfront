@@ -27,21 +27,21 @@
                         <label for="username" class="layui-form-label">
                             <span class="x-red">*</span>用户名</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="username" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="username" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" maxlength="6"></div>
                     </div>
 					
 					<div class="layui-form-item">
 					    <label for="password" class="layui-form-label">
 					        <span class="x-red">*</span>密码</label>
 					    <div class="layui-input-inline">
-					        <input id="password" name="password" type="password" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input id="password" name="password" type="password" required="" lay-verify="required" autocomplete="off" class="layui-input" maxlength="6"></div>
 					</div>
 					
 					<div class="layui-form-item">
 					    <label for="passwordAgain" class="layui-form-label">
 					        <span class="x-red">*</span>确认密码</label>
 					    <div class="layui-input-inline">
-					        <input id="passwordAgain" name="passwordAgain" type="password" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input id="passwordAgain" name="passwordAgain" type="password" required="" lay-verify="required" autocomplete="off" class="layui-input" maxlength="6"></div>
 					</div>
 					
 					<div class="layui-form-item">
@@ -92,24 +92,32 @@
 						"password":password,
 						"userType":userType
 						};
+					if(data.password.length===6){
+						$.ajax({
+							url: URL+'/v1/user',
+							method: 'POST',
+						    data: data,
+							success:function(res){
+							                    if(res.code === 0){
+													// console.info(res);
+													layer.alert(res.msg);
+							                    }
+							                    else{
+							                    layer.alert(res.msg);}
+							                },
+							error:function(data){
+							layer.alert("服务器繁忙，添加失败！");
+							}	  
+						});
+					}
+					else{
+						layer.alert("请输入6位用户名以及密码！");
+					}
 
-					$.ajax({
-						url: URL+'/v1/user',
-						method: 'POST',
-					    data: data,
-						success:function(res){
-						                    if(res.code === 0){
-												// console.info(res);
-												layer.alert(res.msg);
-						                    }
-						                    else{
-						                    layer.alert(res.msg);}
-						                },
-						error:function(data){
-						layer.alert("服务器繁忙，添加失败！");
-						}	  
-					});
+					
 				}
+				
+				
 				else{
 					layer.alert("密码与确认密码不一致！");
 				}
