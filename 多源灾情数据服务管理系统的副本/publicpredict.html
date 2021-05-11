@@ -40,8 +40,11 @@
 		            
 
 		<div class="layui-form-item">
-		    <div class="layui-input-block">
+		    <div class="layui-input-block" id="fa">
+			<div id="Status"></div>
+			<div id="Text"></div>
 		      <button type="submit" class="layui-btn" lay-submit="" lay-filter="submit" onClick="return false">开始爬虫</button>
+			  <button class="layui-btn" onclick="xadmin.open('查看热力图','./publicanalysis.html',700,444)">查看热力图</button>
 		      <button type="button" class="layui-btn" onclick="prediction()">开始分析</button>
 		    </div>
 		  </div>
@@ -50,12 +53,13 @@
 		</div>
 		<script>
 			var getspstuatus
+			var statustext
 			function getSpiderStatus(){
 				var URL = 'http://localhost:3002';
 				$.ajax({
 					url: URL+'/api/getSpiderStatus',
 					method:'GET',
-					contentType:'application/json',
+					contentType:'application/json;charset=utf-8',
 					// success:function(res){
 					//                     if(res.analysisRes!== null){
 					// 					console.log("1")
@@ -73,7 +77,20 @@
 										//xadmin.father_reload();
 										//layer.alert("添加成功！");
 										clearInterval(getspstuatus);
-										alert("爬虫已完成！");
+										$("#Status").remove();
+										$("#Text").remove();
+										var div1 = document.createElement('div');
+										div1.id="Text";
+										div1.style.cssText = 'width:px;margin: 50px;';
+										div1.innerHTML = '爬虫已完成 ';
+										document.getElementById("fa").appendChild(div1);
+										
+										var div = document.createElement('div');
+										div.id="Status";
+										div.style.cssText = 'width:px;';
+										//div.setAttribute("class", "layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop");
+										document.getElementById("Text").appendChild(div);
+										//alert("爬虫已完成！");
 					                    }
 					                }
 				})
@@ -141,7 +158,7 @@
 					$.ajax({
 						url: URL+'/api/changeConfig',
 						method: 'POST',
-                        contentType:'application/json',
+                        contentType:'application/json;charset=utf-8',
                         data: JSON.stringify(formdata),
 						dataType: 'json',
 						success:function(res){
@@ -152,9 +169,24 @@
 											$.ajax({
 												url: URL+'/api/executeSpider',
 												method:'POST',
-												contentType:'application/json',
+												contentType:'application/json;charset=utf-8',
 											})
 											getspstuatus= setInterval(function(){ getSpiderStatus() }, 1000);
+											// if(document.getElementById("Status")!=null)
+											//   document.body.removeChild(document.getElementById("Status"));
+											$("#Status").remove();
+											$("#Text").remove();
+											var div1 = document.createElement('div');
+											div1.id="Text";
+											div1.style.cssText = 'width:px;margin: 50px;';
+											div1.innerHTML = '爬虫运行中请稍后 ';
+											document.getElementById("fa").appendChild(div1);
+											
+											var div = document.createElement('div');
+											div.id="Status";
+											div.style.cssText = 'width:px;';
+											div.setAttribute("class", "layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop");
+											document.getElementById("Text").appendChild(div);
 						                    }
 						                    else{
 						                    layer.alert("添加失败！");}
@@ -203,15 +235,29 @@
 					$.ajax({
 						url: URL+'/api/startIntensity',
 						method:'POST',
-						contentType:'application/json',
+						contentType:'application/json;charset=utf-8',
 					})
 					myVar= setInterval(function(){ getRes() }, 1000);
+					$("#Status").remove();
+					$("#Text").remove();
+					var div1 = document.createElement('div');
+					div1.id="Text";
+					div1.style.cssText = 'width:px;margin: 50px;';
+					div1.innerHTML = '正在分析请稍后 ';
+					document.getElementById("fa").appendChild(div1);
+					
+					var div = document.createElement('div');
+					div.id="Status";
+					div.style.cssText = 'width:px;';
+					div.setAttribute("class", "layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop");
+					document.getElementById("Text").appendChild(div);
+					//alert("爬虫已完成！");
 				}
 				function getRes(){
 					$.ajax({
 						url: URL+'/api/getAnalysisRes',
 						method:'GET',
-						contentType:'application/json',
+						contentType:'application/json;charset=utf-8',
 						success:function(res){
 						                    if(res.analysisRes!== null){
 											console.log("1")
@@ -219,7 +265,22 @@
 											//xadmin.father_reload();
 											//layer.alert("添加成功！");
 											clearInterval(myVar);
-											alert("本次地震的烈度为："+res.analysisRes);
+											$("#Status").remove();
+											$("#Text").remove();
+											var div1 = document.createElement('div');
+											div1.id="Text";
+											div1.style.cssText = 'width:px;margin: 50px;';
+											div1.innerHTML = '本次地震烈度为： ';
+											document.getElementById("fa").appendChild(div1);
+											
+											var div = document.createElement('div');
+											div.id="Status";
+											div.style.cssText = 'width:px;';
+											div.innerHTML = res.analysisRes;
+											//div.setAttribute("class", "layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop");
+											document.getElementById("Text").appendChild(div);
+											//alert("爬虫已完成！");
+											//alert("本次地震的烈度为："+res.analysisRes);
 						                    }
 						                }
 					})

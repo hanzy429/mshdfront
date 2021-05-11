@@ -82,13 +82,13 @@
 					    <label for="type" class="layui-form-label">
 					        <span class="x-red">*</span>类型</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="type" name="type" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')" maxlength="1" id="type" name="type" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 					<div class="layui-form-item">
 					    <label for="grade" class="layui-form-label">
 					        <span class="x-red">*</span>破坏等级</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="grade" name="grade" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')" maxlength="1"  id="grade" name="grade" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 					
 		<div class="layui-form-item">
@@ -113,7 +113,7 @@
 					    <label for="longitude" class="layui-form-label">
 					        <span class="x-red">*</span>地震编码</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="earthquake-id" name="number" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="text" id="earthquake-id" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="26" name="number" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 		<div class="layui-form-item">
 		    <label for="source" class="layui-form-label">

@@ -43,13 +43,13 @@
 					    <label for="intensity" class="layui-form-label">
 					        <span class="x-red">*</span>烈度</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="intensity" name="intensity" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')" maxlength="2" id="intensity" name="intensity" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 					<div class="layui-form-item">
 					    <label for="type" class="layui-form-label">
 					        <span class="x-red">*</span>类型</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="type" name="type" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="text" id="type" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')" maxlength="1" name="type" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 					<div class="layui-form-item">
 					    <label for="picture" class="layui-form-label">

@@ -62,38 +62,42 @@
 					}
 					
 					else{
-						
-						$.ajax({
-							url: URL+'/v1/username/'+jsonObj.username,
-							method: 'PUT',
-						    data: {
-								"username":newUsername
-							},
-							xhrFields:{
-							    withCredentials:true
-							},
-							success:function(res){
-							                    if(res.code === 0){
-													var data ={
-														"username": newUsername,
-														"password": jsonObj.password,
-														"registerDate": jsonObj.registerDate,
-														"loginDate": jsonObj.loginDate,
-														"lastLoginDate": jsonObj.lastLoginDate,
-														"loginCount": jsonObj.loginCount,
-														"userType": jsonObj.userType
-													};
-													var user = JSON.stringify(data);
-													window.localStorage.setItem("user",user);
-													layer.alert(res.msg);
-							                    }
-							                    else{
-							                    layer.alert(res.msg);}
-							                },
-							error:function(data){
-							layer.alert("服务器繁忙，添加失败！");
-							}	  
-						});
+						if(newUsername.length===6){
+							$.ajax({
+								url: URL+'/v1/username/'+jsonObj.username,
+								method: 'PUT',
+							    data: {
+									"username":newUsername
+								},
+								xhrFields:{
+								    withCredentials:true
+								},
+								success:function(res){
+								                    if(res.code === 0){
+														var data ={
+															"username": newUsername,
+															"password": jsonObj.password,
+															"registerDate": jsonObj.registerDate,
+															"loginDate": jsonObj.loginDate,
+															"lastLoginDate": jsonObj.lastLoginDate,
+															"loginCount": jsonObj.loginCount,
+															"userType": jsonObj.userType
+														};
+														var user = JSON.stringify(data);
+														window.localStorage.setItem("user",user);
+														layer.alert(res.msg);
+								                    }
+								                    else{
+								                    layer.alert(res.msg);}
+								                },
+								error:function(data){
+								layer.alert("服务器繁忙，添加失败！");
+								}	  
+							});
+						}
+						else{
+						layer.alert("请输入6位用户名！");
+					}
 						
 					}
 				})

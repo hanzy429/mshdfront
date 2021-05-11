@@ -29,7 +29,13 @@
       for (var i = 0; i < info.length; i++) {
         
         var marker = new T.Marker(new T.LngLat(info[i].longitude, info[i].latitude));  // 创建标注
-        var content = `编号：${info[i].id}\n经度：${info[i].longitude}\n纬度：${info[i].latitude}\n地点：${info[i].location}\n时间：${info[i].date}\n震级：${info[i].magnitude}\n震源深度：${info[i].depth}\n汇报单位：${info[i].reportingUnit}`
+        var content = `
+		经度：${info[i].longitude}°\n
+		纬度：${info[i].latitude}°\n
+		地点：${info[i].location}\n
+		时间：${info[i].date}\n
+		震级：${info[i].magnitude}级\n
+		震源深度：${info[i].depth}km\n`
         map.addOverLay(marker);               // 将标注添加到地图中
         addClickHandler(content, marker);
       }
@@ -64,7 +70,7 @@
     </script>
 </head>
 <body onLoad="getinfo()">
-<div id="mapDiv"></div>
+<div id="mapDiv" style="white-space: pre;"></div>
 <p>为多个点添加多个点的信息窗口</p>
 </body>
 	<script type="text/javascript" src="http://api.tianditu.gov.cn/api?v=4.0&tk=634969475c3d3781deafd63959bb8692"></script>

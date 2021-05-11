@@ -81,19 +81,19 @@
 		                <label for="basicallyIntactSquare" class="layui-form-label">
 		                    <span class="x-red">*</span>基本完好面积</label>
 		                <div class="layui-input-inline">
-		                    <input type="text" id="basicallyIntactSquare" name="basicallyIntactSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+		                    <input type="number" oninput="if(value<0)value=0" name="basicallyIntactSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 		            </div>
 					<div class="layui-form-item">
 					    <label for="damagedSquare" class="layui-form-label">
 					        <span class="x-red">*</span>破坏面积</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="damagedSquare" name="damagedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="number" oninput="if(value<0)value=0" id="damagedSquare" name="damagedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 					<div class="layui-form-item">
 					    <label for="destroyedSquare" class="layui-form-label">
 					        <span class="x-red">*</span>毁坏面积</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="destroyedSquare" name="destroyedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="number" oninput="if(value<0)value=0" id="destroyedSquare" name="destroyedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 					</div>
 					<div id = "square2">
@@ -101,31 +101,31 @@
 					    <label for="basicallyIntactSquare" class="layui-form-label">
 					        <span class="x-red">*</span>基本完好面积</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="basicallyIntactSquare" name="basicallyIntactSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="number" oninput="if(value<0)value=0" id="basicallyIntactSquare" name="basicallyIntactSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 					<div class="layui-form-item">
 					    <label for="slightDamagedSquare" class="layui-form-label">
 					        <span class="x-red">*</span>轻微破坏面积</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="slightDamagedSquare" name="slightDamagedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="number" oninput="if(value<0)value=0" id="slightDamagedSquare" name="slightDamagedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 					<div class="layui-form-item">
 					    <label for="moderateDamagedSquare" class="layui-form-label">
 					        <span class="x-red">*</span>中等破坏面积</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="moderateDamagedSquare" name="moderateDamagedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="number" oninput="if(value<0)value=0" id="moderateDamagedSquare" name="moderateDamagedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 					<div class="layui-form-item">
 					    <label for="seriousDamagedSquare" class="layui-form-label">
 					        <span class="x-red">*</span>严重破坏面积</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="seriousDamagedSquare" name="seriousDamagedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="number" oninput="if(value<0)value=0" id="seriousDamagedSquare" name="seriousDamagedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 					<div class="layui-form-item">
 					    <label for="destroyedSquare" class="layui-form-label">
 					        <span class="x-red">*</span>毁坏面积</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="destroyedSquare" name="destroyedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="number" oninput="if(value<0)value=0" id="destroyedSquare" name="destroyedSquare" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 					</div>
 					<div class="layui-form-item">
@@ -138,7 +138,7 @@
 					    <label for="longitude" class="layui-form-label">
 					        <span class="x-red">*</span>地震编码</label>
 					    <div class="layui-input-inline">
-					        <input type="text" id="earthquake-id" name="number" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+					        <input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="26" id="earthquake-id" name="number" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 					</div>
 		<div class="layui-form-item">
 		    <label for="source" class="layui-form-label">
